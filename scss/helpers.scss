@@ -1,0 +1,73 @@
+/*
+    helpers.scss v1.0.0
+    Some utilities mixins and functions.
+    MIT License | Develop by Jose Luis Quintana - www.joseluisquintana.pe
+*/
+
+@mixin transition($property: all, $time: .3s, $ease-function: ease) {
+    -webkit-transition: $property $time $ease-function;
+    -moz-transition: $property $time $ease-function;
+    -ms-transition: $property $time $ease-function;
+    -o-transition: $property $time $ease-function;
+    transition: $property $time $ease-function;
+};
+
+@mixin border_radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin center_table {
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: table;
+    text-align: center;
+    table-layout: fixed;
+    overflow: hidden;
+    @include square(100%);
+}
+
+@mixin center_table_cell {
+    position: relative;
+    left: 0;
+    top: 0;
+    overflow: hidden;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+}
+
+@mixin absolute_center_xy($width, $height: 0) {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -($width / 2);
+
+    @if $height == 0 {
+        $height: $width;
+    }
+
+    margin-top: -($height / 2);
+}
+
+@mixin relative_center_xy($parent_width, $parent_height, $width, $height) {
+	position: relative;
+    left: ($parent_width - $width) / 2;
+    top: ($parent_height - $height) / 2;
+}
+
+@mixin square($size) {
+    width: $size;
+    height: $size;
+};
+
+@mixin circle($radius, $center_absolute: false) {
+ 	@if $center_absolute {
+ 		@include absolute_center_xy($radius);
+ 	}
+
+    @include square($radius);
+ 	@include border_radius($radius);
+}
