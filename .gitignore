@@ -3,3 +3,5 @@
 
 /.sass-cache
 /.design
+/css/*.css
+/css/vendor
